@@ -1,0 +1,12 @@
+name: 'Secret Replace Action'
+description: 'Replace yours files by screts'
+inputs:
+  file:
+    description: Template file.
+    required: true
+  secrets:
+    description: Secret object from Vault.
+    required: true
+runs:
+  using: 'node16'
+  main: 'lib/index.js'

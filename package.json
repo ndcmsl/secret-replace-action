@@ -1,0 +1,30 @@
+{
+  "name": "secret-replace-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "ncc build -o lib src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndcmsl/secret-replace-action.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndcmsl/secret-replace-action/issues"
+  },
+  "homepage": "https://github.com/ndcmsl/secret-replace-action#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "@vercel/ncc": "0.33.4",
+    "typescript": "4.6.4"
+  },
+  "dependencies": {
+    "@actions/core": "^1.8.1"
+  }
+}
