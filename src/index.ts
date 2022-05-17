@@ -1,13 +1,29 @@
-import { getInput, setFailed, setOutput } from '@actions/core';
+import { getInput, setFailed, setOutput} from '@actions/core';
 
 const configFile: string = getInput('file');
-const secrets: object = JSON.parse(getInput('secrets'));
+const endpoint: string = getInput('endpoint');
+const vaultToken: string = getInput('vaultToken');
+const vaultPath: string = getInput('vaultPath');
+const namespace: string = getInput('namespace');
 
-function replaceFile(string: string, variables: object) {
+const options = {
+    apiVersion: 'v1',
+    endpoint: endpoint,
+    token: vaultToken,
+    namespace: namespace
+};
+
+function replaceFile(string: string, variables: object): string {
     return string.replace(/\{{([^}]*)}}/gm, (_, name) => variables[name]);
 }
 
-function main() {
+async function getSecrets() {
+    const vault = require("node-vault")(options);
+    return vault.read(vaultPath);    
+}
+
+async function main() {
+    const secrets: object = (await getSecrets())?.data?.data;
     const fileParsed: string = replaceFile(configFile, secrets);
     setOutput('fileParsed', fileParsed);
 }
