@@ -4,9 +4,19 @@ inputs:
   file:
     description: Template file.
     required: true
-  secrets:
-    description: Secret object from Vault.
+  endpoint:
+    description: Vualt endpoint
     required: true
+  vaultToken:
+    description: Vault token
+    required: true
+  vaultPath:
+    description: Api Path
+    required: true
+  namespace:
+    description: Vault namespace
+    default: admin
+    required: false    
 runs:
   using: 'node16'
   main: 'lib/index.js'
