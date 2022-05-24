@@ -5,6 +5,7 @@ const endpoint: string = getInput('endpoint');
 const vaultToken: string = getInput('vaultToken');
 const vaultPath: string = getInput('vaultPath');
 const namespace: string = getInput('namespace');
+const secretVersion: string = getInput('secretVersion');
 
 const options = {
     apiVersion: 'v1',
@@ -19,7 +20,12 @@ function replaceFile(string: string, variables: object): string {
 
 async function getSecrets() {
     const vault = require("node-vault")(options);
-    return vault.read(vaultPath);    
+    if (secretVersion) {
+        return vault.read(vaultPath + "?version=" + secretVersion);
+    }
+    else {
+        return vault.read(vaultPath)
+     }
 }
 
 async function main() {

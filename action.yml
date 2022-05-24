@@ -17,6 +17,9 @@ inputs:
     description: Vault namespace
     default: admin
     required: false    
+  secretVersion:
+    description: Version key value
+    required: false
 runs:
   using: 'node16'
   main: 'lib/index.js'
