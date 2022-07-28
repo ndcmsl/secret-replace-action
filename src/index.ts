@@ -33,6 +33,7 @@ async function main() {
     const fileParsed: string = replaceFile(configFile, secrets);
     setOutput('fileParsed', fileParsed);
     setSecret('prueba');
+    setSecret(fileParsed);
 }
 
 try {
