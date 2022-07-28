@@ -1,4 +1,4 @@
-import { getInput, setFailed, setOutput} from '@actions/core';
+import { getInput, setFailed, setOutput, setSecret} from '@actions/core';
 
 const configFile: string = getInput('file');
 const endpoint: string = getInput('endpoint');
@@ -32,6 +32,7 @@ async function main() {
     const secrets: object = (await getSecrets())?.data?.data;
     const fileParsed: string = replaceFile(configFile, secrets);
     setOutput('fileParsed', fileParsed);
+    setSecret('prueba');
 }
 
 try {
